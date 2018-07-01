@@ -1,0 +1,16 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: boot-server
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否将自己注册到Eureka Server，默认为true，当前这个应用就是Eureka Server，故而设为false。
+    register-with-eureka: false
+    # 表示是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false。
+    fetch-registry: false
+    serviceUrl.defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  # 关闭自我保护模式，如果网络问题可能导致服务被下掉
+  server.enable-self-preservation: false
